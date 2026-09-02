@@ -1,0 +1,26 @@
+{
+  "logo": "images/logo.jpg",
+  "hero": "images/image18.jpeg",
+  "breed": "images/image16.jpeg",
+  "social": "images/image1.jpeg",
+  "about": "images/image8.jpeg",
+  "gohome": "images/image12.jpeg",
+  "colors": [
+    { "image": "images/image1.jpeg" },
+    { "image": "images/image6.jpeg" },
+    { "image": "images/image16.jpeg" },
+    { "image": "images/image12.jpeg" },
+    { "image": "images/image10.jpeg" },
+    { "image": "images/image7.jpeg" },
+    { "image": "images/image17.jpeg" },
+    { "image": "images/image18.jpeg" }
+  ],
+  "album": [
+    { "image": "images/image3.jpeg" },
+    { "image": "images/image17.jpeg" },
+    { "image": "images/image5.jpeg" },
+    { "image": "images/image7.jpeg" },
+    { "image": "images/image2.jpeg" },
+    { "image": "images/image10.jpeg" }
+  ]
+}

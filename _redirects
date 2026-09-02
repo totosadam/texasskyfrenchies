@@ -1,0 +1,2 @@
+# Netlify redirect so the editor's login handoff lands back in the panel
+/admin/*  /admin/index.html  200

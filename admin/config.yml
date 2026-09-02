@@ -1,0 +1,108 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "images"
+
+site_url: https://texasskyfrenchies.com
+logo_url: https://texasskyfrenchies.com/images/logo.jpg
+
+collections:
+  - name: "puppies"
+    label: "Available Puppies"
+    files:
+      - name: "puppies"
+        label: "Available Puppies"
+        file: "data/puppies.json"
+        description: "Add, remove and reorder the puppies shown on the website. Drag the handles to reorder."
+        fields:
+          - label: "Puppies"
+            name: "puppies"
+            widget: "list"
+            label_singular: "Puppy"
+            summary: "{{fields.name}} — {{fields.status}}"
+            fields:
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                media_library: { config: { multiple: false } }
+              - label: "Name / description"
+                name: "name"
+                widget: "string"
+                hint: "For example: Male · Lilac Merle Fluffy"
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["Available", "Reserved", "Sold"]
+                default: "Available"
+              - label: "Small line underneath"
+                name: "note"
+                widget: "string"
+                default: "AKC registered"
+                required: false
+
+  - name: "galleries"
+    label: "Photos & Galleries"
+    files:
+      - name: "galleries"
+        label: "Photos & Galleries"
+        file: "data/galleries.json"
+        description: "The two photo galleries plus the big feature photos around the page."
+        fields:
+          - label: "‘A rainbow of Frenchie colors’ gallery"
+            name: "colors"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{fields.image}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+          - label: "‘Moments from our home’ album"
+            name: "album"
+            widget: "list"
+            label_singular: "Photo"
+            summary: "{{fields.image}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+          - { label: "Logo (small round, top bar)", name: "logo", widget: "image" }
+          - { label: "Big photo at the very top", name: "hero", widget: "image" }
+          - { label: "‘Big personality, perfect size’ photo", name: "breed", widget: "image" }
+          - { label: "‘See our latest pups on social’ photo", name: "social", widget: "image" }
+          - { label: "‘A little family kennel in Dallas’ photo", name: "about", widget: "image" }
+          - { label: "‘What comes home with every pup’ photo", name: "gohome", widget: "image" }
+
+  - name: "settings"
+    label: "Phone & Links"
+    files:
+      - name: "settings"
+        label: "Phone & Links"
+        file: "data/settings.json"
+        description: "Your phone number powers every call button on the site."
+        fields:
+          - label: "Phone number"
+            name: "phone"
+            widget: "string"
+            hint: "Write it how you want it to appear, e.g. (972) 213-2152"
+          - label: "Blue bar at the very top"
+            name: "announcement"
+            widget: "string"
+            required: false
+            hint: "Leave this empty to hide the bar completely."
+          - { label: "Instagram link", name: "instagram", widget: "string" }
+          - { label: "Facebook link", name: "facebook", widget: "string" }
+
+  - name: "testimonials"
+    label: "Reviews"
+    files:
+      - name: "testimonials"
+        label: "Reviews"
+        file: "data/testimonials.json"
+        fields:
+          - label: "Reviews"
+            name: "testimonials"
+            widget: "list"
+            label_singular: "Review"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "What they said", name: "quote", widget: "text" }
+              - { label: "Who said it", name: "name", widget: "string", hint: "e.g. Ashley R. · Fort Worth" }

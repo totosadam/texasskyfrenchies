@@ -40,7 +40,6 @@
     .tsf-cta-box { padding-left: 22px !important; padding-right: 22px !important; }
   }
 </style>
-<script src="content.js"></script>
 </head>
 <body id="top">
 
@@ -333,8 +332,21 @@
 
 <script>
 (function () {
-  var S = window.SITE || {};
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s == null ? '' : String(s); return d.innerHTML; };
+  var grab = function (u) {
+    return fetch(u, { cache: 'no-store' }).then(function (r) { return r.json(); }).catch(function () { return {}; });
+  };
+
+  Promise.all([
+    grab('data/settings.json'),
+    grab('data/puppies.json'),
+    grab('data/galleries.json'),
+    grab('data/testimonials.json')
+  ]).then(function (r) {
+    render(Object.assign({}, r[0], r[1], r[2], { testimonials: (r[3] || {}).testimonials }));
+  });
+
+  function render(S) {
   var tel = 'tel:+1' + String(S.phone || '').replace(/\D/g, '');
 
   /* announcement */
@@ -358,10 +370,9 @@
   });
 
   /* feature photos */
-  var P = S.photos || {};
   document.querySelectorAll('[data-photo]').forEach(function (img) {
-    var f = P[img.getAttribute('data-photo')];
-    if (f) img.setAttribute('src', 'images/' + f);
+    var f = S[img.getAttribute('data-photo')];
+    if (f) img.setAttribute('src', f);
   });
 
   /* available puppies */
@@ -371,7 +382,7 @@
     var bg = badge[String(p.status || '').toLowerCase()] || 'var(--accent)';
     return '<div style="background: #F7F1E6; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 18px 40px -26px rgba(58,46,34,0.5);">' +
       '<div style="position: relative;">' +
-        '<img src="images/' + esc(p.photo) + '" alt="' + esc(p.name) + ' French Bulldog puppy" loading="lazy" style="display: block; width: 100%; height: auto; background: #EDE4D3;">' +
+        '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + ' French Bulldog puppy" loading="lazy" style="display: block; width: 100%; height: auto; background: #EDE4D3;">' +
         '<span style="position: absolute; top: 14px; left: 14px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; background: ' + bg + '; color: #F7F1E6;">' + esc(p.status) + '</span>' +
       '</div>' +
       '<div style="padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 6px;">' +
@@ -383,15 +394,15 @@
 
   /* colors gallery */
   var cg = document.getElementById('colors-grid');
-  if (cg) cg.innerHTML = (S.colorsGallery || []).map(function (f) {
+  if (cg) cg.innerHTML = (S.colors || []).map(function (f) {
     return '<div style="border-radius: 18px; overflow: hidden; box-shadow: 0 14px 30px -22px rgba(58,46,34,0.5);">' +
-      '<img src="images/' + esc(f) + '" alt="French Bulldog puppy" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover; background: #EDE4D3;"></div>';
+      '<img src="' + esc(f.image) + '" alt="French Bulldog puppy" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover; background: #EDE4D3;"></div>';
   }).join('');
 
   /* album gallery */
   var ag = document.getElementById('album-grid');
-  if (ag) ag.innerHTML = (S.albumGallery || []).map(function (f) {
-    return '<img src="images/' + esc(f) + '" alt="Frenchie puppy photo" loading="lazy" style="display: block; width: 100%; height: clamp(200px, 24vw, 260px); object-fit: cover; border-radius: 14px; background: #EDE4D3;">';
+  if (ag) ag.innerHTML = (S.album || []).map(function (f) {
+    return '<img src="' + esc(f.image) + '" alt="Frenchie puppy photo" loading="lazy" style="display: block; width: 100%; height: clamp(200px, 24vw, 260px); object-fit: cover; border-radius: 14px; background: #EDE4D3;">';
   }).join('');
 
   /* testimonials */
@@ -402,6 +413,7 @@
       '<p style="font-family: \'DM Serif Display\', serif; font-size: 19px; line-height: 1.45; color: #3A2E22; margin: 0 0 18px;">“' + esc(t.quote) + '”</p>' +
       '<div style="font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #94815F;">' + esc(t.name) + '</div></div>';
   }).join('');
+  }
 })();
 </script>
 

@@ -1,0 +1,34 @@
+{
+  "puppies": [
+    {
+      "name": "Male · Lilac Merle Fluffy",
+      "note": "AKC registered",
+      "status": "Available",
+      "photo": "images/puppy-lilac-merle-male.jpeg"
+    },
+    {
+      "name": "Female · Chocolate Merle Fluffy",
+      "note": "AKC registered",
+      "status": "Available",
+      "photo": "images/puppy-choc-merle-female-1.jpeg"
+    },
+    {
+      "name": "Female · Chocolate Merle Fluffy",
+      "note": "AKC registered",
+      "status": "Available",
+      "photo": "images/puppy-choc-merle-female-2.jpeg"
+    },
+    {
+      "name": "Female · Chocolate Fluffy",
+      "note": "AKC registered",
+      "status": "Reserved",
+      "photo": "images/puppy-chocolate-female.jpeg"
+    },
+    {
+      "name": "Female · Black Fluffy",
+      "note": "AKC registered",
+      "status": "Sold",
+      "photo": "images/puppy-black-female.jpeg"
+    }
+  ]
+}
