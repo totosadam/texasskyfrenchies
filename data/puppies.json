@@ -9,14 +9,20 @@
     {
       "name": "Female · Chocolate and tan Merle Fluffy",
       "note": "AKC registered",
-      "status": "Available",
+      "status": "Sold",
       "photo": "images/img_3415.jpeg"
     },
     {
       "name": "Female · Chocolate and tan Merle Fluffy",
       "note": "AKC registered",
-      "status": "Available",
+      "status": "Reserved",
       "photo": "images/img_3334.jpeg"
+    },
+    {
+      "status": "Available",
+      "note": "AKC registered",
+      "photo": "images/img_0015.jpeg",
+      "name": "Chocolate and tan fluffy female "
     }
   ]
 }
